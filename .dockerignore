@@ -1,0 +1,3 @@
+# To keep image size small, ignore all files except the build folder.
+*
+!build
