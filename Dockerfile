@@ -28,9 +28,16 @@ RUN find $INSTALL_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 # apt-get install basic tools and generate an english locale
 RUN $INSTALL_SCRIPTS/tools.sh
 
-# Set language to english from tool.sh's generated locale and install fonts
+# Install developer tools
+RUN $INSTALL_SCRIPTS/git.sh
+RUN $INSTALL_SCRIPTS/golang.sh
+RUN $INSTALL_SCRIPTS/nodejs.sh
+RUN $INSTALL_SCRIPTS/kubectl.sh
+RUN $INSTALL_SCRIPTS/python.sh
+RUN $INSTALL_SCRIPTS/vs_code.sh
+
+# Set language to english from tool.sh's generated locale
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
-RUN $INSTALL_SCRIPTS/install_custom_fonts.sh
 
 # Install xvnc-server & noVNC - HTML5 based VNC viewer
 RUN $INSTALL_SCRIPTS/tigervnc.sh
