@@ -99,6 +99,11 @@ Generate random password and run in high resolution:
   unset RANDOM_PASSWORD
 ```
 
+On mac, you can login via screenshare with this command:
+```
+  open vnc://localhost:5901
+```
+
 ### Known Issues
 
 #### Chromium crashes with high VNC_RESOLUTION
