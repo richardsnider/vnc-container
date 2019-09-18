@@ -10,8 +10,8 @@ apt-get install -y python3 python3-pip
 pip3 install virtualenv
 
 # Setup virtualenv
-virtualenv $HOME/python
-source $HOME/python/bin/activate
+virtualenv $HOME/venv
+source $HOME/venv/bin/activate
 
 #Install AWS tools
 pip install awscli
