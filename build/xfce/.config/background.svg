@@ -1,67 +1,15 @@
-<svg  xmlns="http://www.w3.org/2000/svg">
-<rect width="100%" height="100%" fill="black"/>
-  <style>
-    .white { font: 13px monospace; fill: white; color: white; border-spacing: 50px 2px}
-    span { color: green }
-  </style>
+<svg height="1080pt" width="1920pt" xmlns="http://www.w3.org/2000/svg">
+<style>
+    text {
+        fill: white;
+        font-size: medium;
+    }
 
-  <foreignObject x="10" y="10" width="100%" height="100%">
-    <body xmlns="http://www.w3.org/1999/xhtml">
-      <table class="white">
-        <tr><td>uname -a                                        <span># Get the kernel version (and BSD version)</span></td>
-        <td>lsb_release -a                                      <span># Full release info of any LSB distribution </span></td>
-        <td>cat /etc/SuSE-release                               <span># Get SuSE version</span></td></tr>
-        <tr><td>cat /etc/SuSE-release                           <span># Get SuSE version</span></td>
-            <td>cat /etc/debian_version                         <span># Get Debian version</span></td>
-            <td>uptime                                          <span># Show how long the system has been running + load</span></td></tr>
-        <tr><td>hostname                                        <span># system's host name</span></td>
-            <td>hostname -i                                     <span># Display the IP address of the host. (Linux only)</span></td>
-            <td>man hier                                        <span># Description of the file system hierarchy</span></td></tr>
-        <tr><td>last reboot                                     <span># Show system reboot history</span></td>
-            <td>dmesg                                           <span># Detected hardware and boot messages</span></td>
-            <td>lsdev                                           <span># information about installed hardware</span></td></tr>
-        <tr><td>cat /proc/cpuinfo                               <span># CPU model</span></td>
-            <td>cat /proc/meminfo                               <span># Hardware memory</span></td>
-            <td>grep MemTotal /proc/meminfo                     <span># Display the physical memory</span></td></tr>
-        <tr><td>watch -n1 'cat /proc/interrupts'                <span># Watch changeable interrupts continuously</span></td>
-            <td>free -m                                         <span># Used and free memory (-m for MB)</span></td>
-            <td>cat /proc/devices                               <span># Configured devices</span></td></tr>
-        <tr><td>lspci -tv                                       <span># Show PCI devices</span></td>
-            <td>lsusb -tv                                       <span># Show USB devices</span></td>
-            <td>lshal                                           <span># Show a list of all devices with their properties</span></td></tr>
-        <tr><td>dmidecode                                       <span># Show DMI/SMBIOS: hw info from the BIOS</span></td>
-            <td>top                                             <span>display and update the top cpu processes</span></td>
-            <td>mpstat 1                                        <span>display processors related statistics</span></td></tr>
-        <tr><td>vmstat 2                                        <span>display virtual memory statistics</span></td>
-            <td>iostat 2                                        <span>display I/O statistics (2 s intervals)</span></td>
-            <td>systat -vmstat 1                                <span>BSD summary of system statistics (1 s intervals)</span></td></tr>
-        <tr><td>systat -tcp 1                                   <span>BSD tcp connections (try also -ip)</span></td>
-            <td>systat -netstat 1                               <span>BSD active network connections</span></td>
-            <td>systat -ifstat 1                                <span>BSD network traffic through active interfaces</span></td></tr>
-        <tr><td>systat -iostat 1                                <span>BSD CPU and and disk throughput</span></td>
-            <td>ipcs -a                                         <span>information on System V interprocess</span></td>
-            <td>tail -n 500 /var/log/messages                   <span>Last 500 kernel/syslog messages</span></td></tr>
-        <tr><td>tail /var/log/warn                              <span>System warnings messages see syslog.conf</span></td>
-            <td>id                                              <span>Show the active user id with login and group</span></td>
-            <td>last                                            <span>Show last logins on the system</span></td></tr>
-        <tr><td>who                                             <span>Show who is logged on the system</span></td>
-            <td>groupadd admin                                  <span>Add group "admin" </span></td>
-            <td>useradd -c "Colin Barschel" -g admin -m colin   <span>Add user colin (Linux/Solaris)</span></td></tr>
-        <tr><td>usermod -a -G [group] [user]                    <span>Add existing user to group (Debian)</span></td>
-            <td>groupmod -A [user] [group]                      <span>Add existing user to group (SuSE)</span></td>
-            <td>userdel colin                                   <span>Delete user colin (Linux/Solaris)</span></td></tr>
-        <tr><td>pw groupadd admin                               <span>Use pw on FreeBSD</span></td>
-            <td><span></span></td>
-            <td><span></span></td></tr>
-        <tr><td><span></span></td>
-            <td><span></span></td>
-            <td><span></span></td></tr>
-        <tr><td><span></span></td>
-            <td><span></span></td>
-            <td><span></span></td></tr>
-        
-      </table>
-    </body>
-  </foreignObject>
-
-  </svg>
+    .comment {
+        fill: green
+    }
+</style>
+<rect width="100%" height="100%" fill="black" />
+  <text x="350" y="250" >Text goes here</text>
+  <text x="450" y="250" class="comment">Text goes here</text>
+</svg>
