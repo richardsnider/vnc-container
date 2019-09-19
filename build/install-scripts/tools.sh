@@ -6,7 +6,7 @@ apt-get update
 apt-get install -y software-properties-common
 apt-get update
 
-apt-get install -y vim wget net-tools locales curl gnupg openvpn bzip2 \
+apt-get install -y vim wget net-tools locales curl gnupg bzip2 \
     python-numpy #used for websockify/novnc
 apt-get clean -y
 
