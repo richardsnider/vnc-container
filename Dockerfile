@@ -28,26 +28,20 @@ RUN find $INSTALL_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 # apt-get install basic tools and generate an english locale
 RUN $INSTALL_SCRIPTS/tools.sh
 
-# Install developer tools
+# Set language to english from tool.sh's generated locale
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
+
+# Install software
 RUN $INSTALL_SCRIPTS/git.sh
 RUN $INSTALL_SCRIPTS/golang.sh
 RUN $INSTALL_SCRIPTS/nodejs.sh
 RUN $INSTALL_SCRIPTS/kubectl.sh
 RUN $INSTALL_SCRIPTS/python.sh
 RUN $INSTALL_SCRIPTS/vs_code.sh
-
-# Set language to english from tool.sh's generated locale
-ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
-
-# Install xvnc-server & noVNC - HTML5 based VNC viewer
 RUN $INSTALL_SCRIPTS/tigervnc.sh
 RUN $INSTALL_SCRIPTS/no_vnc.sh
-
-# Install firefox and chrome browser
 RUN $INSTALL_SCRIPTS/firefox.sh
 RUN $INSTALL_SCRIPTS/chrome.sh
-
-# Install xfce UI
 RUN $INSTALL_SCRIPTS/xfce_ui.sh
 
 # Copy xfce configuration to container
