@@ -11,3 +11,5 @@ sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable
 apt-get install -y apt-transport-https
 apt-get update -y
 apt-get install -y code
+
+rm ~/microsoft.gpg
