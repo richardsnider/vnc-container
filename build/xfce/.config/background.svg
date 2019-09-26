@@ -1,15 +1,52 @@
-<svg height="1080pt" width="1920pt" xmlns="http://www.w3.org/2000/svg">
-<style>
-    text {
-        fill: white;
-        font-size: medium;
-    }
+<svg height="1080pt" width="1920pt" xmlns="http://www.w3.org/2000/svg"><style>
+text {
+    fill: white;
+    font-size: 12;
+    font-family: monospace;
+}
 
-    .comment {
-        fill: green
-    }
-</style>
-<rect width="100%" height="100%" fill="black" />
-  <text x="350" y="250" >Text goes here</text>
-  <text x="450" y="250" class="comment">Text goes here</text>
-</svg>
+.comment {
+    fill: green
+}
+</style><rect width="100%" height="100%" fill="black" />
+<text x="100" y="50">uname -a</text><text x="177.609375" y="50" class="comment"># Get the kernel version</text>
+<text x="700" y="50">lsb_release -a</text><text x="820.81640625" y="50" class="comment"># Full release info of any LSB distribution</text>
+<text x="1300" y="50">cat /etc/SuSE-release</text><text x="1471.224609375" y="50" class="comment"># Get SuSE version</text>
+<text x="100" y="70">cat /etc/debian_version</text><text x="285.626953125" y="70" class="comment"># Get Debian version</text>
+<text x="700" y="70">uptime</text><text x="763.20703125" y="70" class="comment"># Show how long the system has been running + load</text>
+<text x="1300" y="70">hostname</text><text x="1377.609375" y="70" class="comment"># system's host name</text>
+<text x="100" y="90">hostname -i</text><text x="199.212890625" y="90" class="comment"># Display the IP address of the host. (Linux only)</text>
+<text x="700" y="90">man hier</text><text x="777.609375" y="90" class="comment"># Description of the file system hierarchy</text>
+<text x="1300" y="90">last reboot</text><text x="1399.212890625" y="90" class="comment"># Show system reboot history</text>
+<text x="100" y="110">dmesg</text><text x="156.005859375" y="110" class="comment"># Detected hardware and boot messages</text>
+<text x="700" y="110">lsdev</text><text x="756.005859375" y="110" class="comment"># information about installed hardware</text>
+<text x="1300" y="110">cat /proc/cpuinfo</text><text x="1442.419921875" y="110" class="comment"># CPU model</text>
+<text x="100" y="130">cat /proc/meminfo</text><text x="242.419921875" y="130" class="comment"># Hardware memory</text>
+<text x="700" y="130">grep MemTotal /proc/meminfo</text><text x="914.431640625" y="130" class="comment"># Display the physical memory</text>
+<text x="1300" y="130">watch -n1 'cat /proc/interrupts'</text><text x="1550.4375" y="130" class="comment"># Watch changeable interrupts continuously</text>
+<text x="100" y="150">free -m</text><text x="170.408203125" y="150" class="comment"># Used and free memory (-m for MB)</text>
+<text x="700" y="150">cat /proc/devices</text><text x="842.419921875" y="150" class="comment"># Configured devices</text>
+<text x="1300" y="150">lspci -tv</text><text x="1384.810546875" y="150" class="comment"># Show PCI devices</text>
+<text x="100" y="170">lsusb -tv</text><text x="184.810546875" y="170" class="comment"># Show USB devices</text>
+<text x="700" y="170">lshal</text><text x="756.005859375" y="170" class="comment"># Show a list of all devices with their properties</text>
+<text x="1300" y="170">dmidecode</text><text x="1384.810546875" y="170" class="comment"># Show DMI/SMBIOS: hw info from the BIOS</text>
+<text x="100" y="190">top</text><text x="141.603515625" y="190" class="comment"># display and update the top cpu processes</text>
+<text x="700" y="190">mpstat 1</text><text x="777.609375" y="190" class="comment"># display processors related statistics</text>
+<text x="1300" y="190">vmstat 2</text><text x="1377.609375" y="190" class="comment"># display virtual memory statistics</text>
+<text x="100" y="210">iostat 2</text><text x="177.609375" y="210" class="comment"># display I/O statistics (2 s intervals)</text>
+<text x="700" y="210">systat -vmstat 1</text><text x="835.21875" y="210" class="comment"># BSD summary of system statistics (1 s intervals)</text>
+<text x="1300" y="210">systat -tcp 1</text><text x="1413.615234375" y="210" class="comment"># BSD tcp connections (try also -ip)</text>
+<text x="100" y="230">systat -netstat 1</text><text x="242.419921875" y="230" class="comment"># BSD active network connections</text>
+<text x="700" y="230">systat -ifstat 1</text><text x="835.21875" y="230" class="comment"># BSD network traffic through active interfaces</text>
+<text x="1300" y="230">systat -iostat 1</text><text x="1435.21875" y="230" class="comment"># BSD CPU and and disk throughput</text>
+<text x="100" y="250">ipcs -a</text><text x="170.408203125" y="250" class="comment"># information on System V interprocess</text>
+<text x="700" y="250">tail -n 500 /var/log/messages</text><text x="928.833984375" y="250" class="comment"># Last 500 kernel/syslog messages</text>
+<text x="1300" y="250">tail /var/log/warn</text><text x="1449.62109375" y="250" class="comment"># System warnings messages see syslog.conf</text>
+<text x="100" y="270">id</text><text x="134.40234375" y="270" class="comment"># Show the active user id with login and group</text>
+<text x="700" y="270">last</text><text x="748.8046875" y="270" class="comment"># Show last logins on the system</text>
+<text x="1300" y="270">who</text><text x="1341.603515625" y="270" class="comment"># Show who is logged on the system</text>
+<text x="100" y="290">userdel colin</text><text x="213.615234375" y="290" class="comment"># Delete user colin (Linux/Solaris)</text>
+<text x="700" y="290">adduser joe</text><text x="799.212890625" y="290" class="comment"># FreeBSD add user joe (interactive)</text>
+<text x="1300" y="290">rmuser joe</text><text x="1392.01171875" y="290" class="comment"># FreeBSD delete user joe (interactive)</text>
+<text x="100" y="310">pw groupadd admin</text><text x="242.419921875" y="310" class="comment"># Use pw on FreeBSD</text>
+<text x="700" y="310">pw groupmod admin -m newmember</text><text x="936.03515625" y="310" class="comment"># Add a new member to a group </text></svg>
