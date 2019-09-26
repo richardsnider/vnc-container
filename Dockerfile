@@ -1,5 +1,4 @@
 FROM ubuntu:18.04
-ENV REFRESHED_AT 2018-10-29
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager" \
       io.k8s.display-name="Headless Ubuntu VNC Container"

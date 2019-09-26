@@ -45,7 +45,6 @@ By default, the image runs as a non-root user. If you want to extend the image a
 ```bash
 # Custom Dockerfile
 FROM ubuntu-xfce-vnc
-ENV REFRESHED_AT 2018-03-18
 
 # Switch to root user (UID 0) to install additional software
 USER 0
