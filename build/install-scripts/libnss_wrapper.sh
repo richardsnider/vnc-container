@@ -2,7 +2,6 @@
 set -e
 
 echo "Install nss-wrapper to be able to execute image as non-root user"
-apt-get update 
 apt-get install -y libnss-wrapper gettext
 apt-get clean -y
 

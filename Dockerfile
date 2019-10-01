@@ -12,7 +12,7 @@ ENV HOME=/headless \
     TERM=xterm \
     STARTUP_DIRECTORY=/dockerstartup \
     INSTALL_SCRIPTS=/headless/install \
-    INSTALL=/headless/install2 \
+    NODE_SCRIPTS=/headless/node_scripts \
     NO_VNC_HOME=/headless/noVNC \
     DEBIAN_FRONTEND=noninteractive \
     VNC_COL_DEPTH=24 \
@@ -22,26 +22,24 @@ ENV HOME=/headless \
 WORKDIR $HOME
 
 # Copy install scripts into the container and make them executable
-ADD ./build/install $INSTALL/
-RUN chmod +x $INSTALL/setup.sh
-
 ADD ./build/install-scripts/ $INSTALL_SCRIPTS/
 RUN find $INSTALL_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 
-# apt-get install basic tools and generate an english locale
-# RUN $INSTALL_SCRIPTS/tools.sh
-
-WORKDIR $INSTALL
-RUN $INSTALL/setup.sh
-WORKDIR $HOME
+# Do some preliminary package installations
+RUN $INSTALL_SCRIPTS/apt-utils.sh
+RUN $INSTALL_SCRIPTS/software-properties-common.sh
+RUN $INSTALL_SCRIPTS/basic_packages.sh
 
 # Set language to english from generated locale
-ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8' FONTCONFIG_PATH='/etc/fonts/'
 
 RUN $INSTALL_SCRIPTS/git.sh
-RUN $INSTALL_SCRIPTS/golang.sh
-RUN $INSTALL_SCRIPTS/kubectl.sh
+RUN $INSTALL_SCRIPTS/brew.sh
 RUN $INSTALL_SCRIPTS/python.sh
+RUN $INSTALL_SCRIPTS/golang.sh
+RUN $INSTALL_SCRIPTS/nodejs.sh
+RUN $INSTALL_SCRIPTS/kubectl.sh
+RUN $INSTALL_SCRIPTS/kops.sh
 RUN $INSTALL_SCRIPTS/vs_code.sh
 RUN $INSTALL_SCRIPTS/tigervnc.sh
 RUN $INSTALL_SCRIPTS/no_vnc.sh
@@ -56,6 +54,14 @@ ADD ./build/xfce/ $HOME/
 RUN $INSTALL_SCRIPTS/libnss_wrapper.sh
 ADD ./build/startup-scripts $STARTUP_DIRECTORY
 RUN $INSTALL_SCRIPTS/set_user_permission.sh $STARTUP_DIRECTORY $HOME
+
+ADD ./build/node $NODE_SCRIPTS/
+WORKDIR $NODE_SCRIPTS
+# TODO: need a way to ensure that node_modules folder isn't copied over from host.
+RUN npm install
+RUN node generateBackground.js
+
+WORKDIR $HOME
 
 # Scripts are complete, root user (UID 0) is no longer needed. Change user the first normal non-root user (UID 1000)
 USER 1000

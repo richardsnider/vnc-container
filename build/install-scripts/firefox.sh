@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-echo "Install Firefox"
-
 function disableUpdate(){
     ff_def="$1/browser/defaults/profile"
     mkdir -p $ff_def
