@@ -50,6 +50,6 @@ module.exports = {
     generateSvgBackground: async () => {
         const textElements = await generateText();
         const svgData = svgHeader + svgStyling + svgBackgroundRect + textElements + svgClosingTag;
-        await writeFile(`${os.homedir()}/background.svg`, svgData);
+        await writeFile(`${os.homedir()}/.config/background.svg`, svgData);
     }
 }
