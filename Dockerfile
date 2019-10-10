@@ -56,15 +56,16 @@ ADD ./build/startup-scripts $STARTUP_DIRECTORY
 RUN $INSTALL_SCRIPTS/set_user_permission.sh $STARTUP_DIRECTORY $HOME
 
 ADD ./build/node $NODE_SCRIPTS/
+RUN chown -R 1000 $NODE_SCRIPTS
 WORKDIR $NODE_SCRIPTS
-# TODO: need a way to ensure that node_modules folder isn't copied over from host.
+
+# Scripts are complete, root user (UID 0) is no longer needed. Change user to the first normal non-root user (UID 1000)
+USER 1000
+
 RUN npm install
 RUN node generateBackground.js
 
 WORKDIR $HOME
-
-# Scripts are complete, root user (UID 0) is no longer needed. Change user the first normal non-root user (UID 1000)
-USER 1000
 
 # Change default entrypoint from `/bin/sh -c` to `/dockerstartup/vnc_startup.sh` and add --wait option by default
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
