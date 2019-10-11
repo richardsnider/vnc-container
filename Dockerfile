@@ -59,6 +59,8 @@ ADD ./build/node $NODE_SCRIPTS/
 RUN chown -R 1000 $NODE_SCRIPTS
 WORKDIR $NODE_SCRIPTS
 
+RUN useradd -ms /bin/bash -u 1000 user
+
 # Scripts are complete, root user (UID 0) is no longer needed. Change user to the first normal non-root user (UID 1000)
 USER 1000
 
