@@ -13,4 +13,3 @@ pip3 install virtualenv
 
 # Setup virtualenv
 virtualenv $HOME/venv
-# source $HOME/venv/bin/activate
