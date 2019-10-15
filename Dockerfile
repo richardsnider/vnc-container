@@ -22,10 +22,6 @@ ENV HOME=/headless \
     VNC_VIEW_ONLY=false
 WORKDIR $HOME
 
-# Copy install scripts into the container and make them executable
-ADD ./build/install-scripts/ $INSTALL_SCRIPTS/
-RUN find $INSTALL_SCRIPTS -name '*.sh' -exec chmod a+x {} +
-
 # Do some preliminary package installations
 RUN apt-get -q update
 RUN apt-get install -y apt-utils
@@ -48,7 +44,10 @@ RUN locale-gen en_US.UTF-8
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8' FONTCONFIG_PATH='/etc/fonts/'
 
 RUN apt-get upgrade -y
-RUN apt-get autoremove -y
+
+# Copy install scripts into the container and make them executable
+ADD ./build/install-scripts/ $INSTALL_SCRIPTS/
+RUN find $INSTALL_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 
 RUN $INSTALL_SCRIPTS/git.sh
 RUN $INSTALL_SCRIPTS/brew.sh
@@ -71,6 +70,8 @@ ADD ./build/xfce/ $HOME/
 RUN $INSTALL_SCRIPTS/libnss_wrapper.sh
 ADD ./build/startup-scripts $STARTUP_DIRECTORY
 RUN $INSTALL_SCRIPTS/set_user_permission.sh $STARTUP_DIRECTORY $HOME
+
+RUN apt-get autoremove -y
 
 ADD ./build/node $NODE_SCRIPTS/
 RUN chown -R 1000 $NODE_SCRIPTS
