@@ -11,9 +11,9 @@ EXPOSE $VNC_PORT $NO_VNC_PORT
 ENV HOME=/headless \
     TERM=xterm \
     STARTUP_DIRECTORY=/dockerstartup \
-    INSTALL_SCRIPTS=/headless/install \
-    SETUP_SCRIPTS=/headless/setup \
-    NODE_SCRIPTS=/headless/node_scripts \
+    INSTALL_SCRIPTS=/headless/build/install \
+    SETUP_SCRIPTS=/headless/build/setup \
+    NODE_SCRIPTS=/headless/build/node_scripts \
     NO_VNC_HOME=/headless/noVNC \
     DEBIAN_FRONTEND=noninteractive \
     VNC_COL_DEPTH=24 \
