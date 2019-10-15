@@ -78,8 +78,6 @@ RUN chown -R 1000 $NODE_SCRIPTS
 ADD ./build/setup-scripts $SETUP_SCRIPTS/
 RUN find $SETUP_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 
-RUN mkdir $HOME/git
-
 RUN useradd -ms /bin/bash -u 1000 user
 
 # Root user (UID 0) is no longer needed. Change user to the first normal non-root user (UID 1000)
@@ -92,8 +90,14 @@ RUN node generateBackground.js
 
 WORKDIR $HOME
 
+RUN mkdir $HOME/git
 ARG GIT_EMAIL_ARG
 ENV GIT_EMAIL=$GIT_EMAIL_ARG
+ARG GIT_USERNAME_ARG
+ENV GIT_USERNAME=$GIT_USERNAME_ARG
+
+RUN git config --global user.email $GIT_EMAIL
+RUN git config --global user.name $GIT_USERNAME
 RUN $SETUP_SCRIPTS/ssh_setup.sh
 
 # Change default entrypoint from `/bin/sh -c` to `/dockerstartup/vnc_startup.sh` and add --wait option by default
