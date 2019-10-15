@@ -97,7 +97,7 @@ ARG GIT_USERNAME_ARG
 ENV GIT_USERNAME=$GIT_USERNAME_ARG
 
 RUN git config --global user.email $GIT_EMAIL
-RUN git config --global user.name $GIT_USERNAME
+RUN git config --global user.name "$GIT_USERNAME"
 RUN $SETUP_SCRIPTS/ssh_setup.sh
 
 # Change default entrypoint from `/bin/sh -c` to `/dockerstartup/vnc_startup.sh` and add --wait option by default
