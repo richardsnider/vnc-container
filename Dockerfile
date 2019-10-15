@@ -12,6 +12,7 @@ ENV HOME=/headless \
     TERM=xterm \
     STARTUP_DIRECTORY=/dockerstartup \
     INSTALL_SCRIPTS=/headless/install \
+    SETUP_SCRIPTS=/headless/setup \
     NODE_SCRIPTS=/headless/node_scripts \
     NO_VNC_HOME=/headless/noVNC \
     DEBIAN_FRONTEND=noninteractive \
@@ -26,12 +27,28 @@ ADD ./build/install-scripts/ $INSTALL_SCRIPTS/
 RUN find $INSTALL_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 
 # Do some preliminary package installations
-RUN $INSTALL_SCRIPTS/apt-utils.sh
-RUN $INSTALL_SCRIPTS/software-properties-common.sh
-RUN $INSTALL_SCRIPTS/basic_packages.sh
+RUN apt-get -q update
+RUN apt-get install -y apt-utils
+RUN apt-get install -y software-properties-common
+RUN apt-get -q update
+RUN apt-get install -y vim
+RUN apt-get install -y wget
+RUN apt-get install -y net-tools
+RUN apt-get install -y locales
+RUN apt-get install -y build-essential
+RUN apt-get install -y curl
+RUN apt-get install -y file
+RUN apt-get install -y gnupg
+RUN apt-get install -y bzip2
+RUN apt-get install -y python-numpy
+RUN apt-get clean -y
 
-# Set language to english from generated locale
+# Generate locales for en_US.UTF-8 and set language to english from generated locale
+RUN locale-gen en_US.UTF-8
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8' FONTCONFIG_PATH='/etc/fonts/'
+
+RUN apt-get upgrade -y
+RUN apt-get autoremove -y
 
 RUN $INSTALL_SCRIPTS/git.sh
 RUN $INSTALL_SCRIPTS/brew.sh
@@ -57,17 +74,27 @@ RUN $INSTALL_SCRIPTS/set_user_permission.sh $STARTUP_DIRECTORY $HOME
 
 ADD ./build/node $NODE_SCRIPTS/
 RUN chown -R 1000 $NODE_SCRIPTS
-WORKDIR $NODE_SCRIPTS
+
+ADD ./build/setup-scripts $SETUP_SCRIPTS/
+RUN find $SETUP_SCRIPTS -name '*.sh' -exec chmod a+x {} +
+
+RUN mkdir $HOME/git
 
 RUN useradd -ms /bin/bash -u 1000 user
 
-# Scripts are complete, root user (UID 0) is no longer needed. Change user to the first normal non-root user (UID 1000)
+# Root user (UID 0) is no longer needed. Change user to the first normal non-root user (UID 1000)
 USER 1000
+
+WORKDIR $NODE_SCRIPTS
 
 RUN npm install
 RUN node generateBackground.js
 
 WORKDIR $HOME
+
+ARG GIT_EMAIL_ARG
+ENV GIT_EMAIL=$GIT_EMAIL_ARG
+RUN $SETUP_SCRIPTS/ssh_setup.sh
 
 # Change default entrypoint from `/bin/sh -c` to `/dockerstartup/vnc_startup.sh` and add --wait option by default
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
