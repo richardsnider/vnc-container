@@ -8,13 +8,13 @@ ENV DISPLAY=:1 \
     NO_VNC_PORT=6901
 EXPOSE $VNC_PORT $NO_VNC_PORT
 
-ENV HOME=/headless \
+ENV HOME=/home/user \
     TERM=xterm \
     STARTUP_DIRECTORY=/dockerstartup \
-    INSTALL_SCRIPTS=/headless/build/install \
-    SETUP_SCRIPTS=/headless/build/setup \
-    NODE_SCRIPTS=/headless/build/node_scripts \
-    NO_VNC_HOME=/headless/noVNC \
+    INSTALL_SCRIPTS=/home/user/build/install \
+    SETUP_SCRIPTS=/home/user/build/setup \
+    NODE_SCRIPTS=/home/user/build/node_scripts \
+    NO_VNC_HOME=/home/user/noVNC \
     DEBIAN_FRONTEND=noninteractive \
     VNC_COL_DEPTH=24 \
     VNC_RESOLUTION=1920x1080 \

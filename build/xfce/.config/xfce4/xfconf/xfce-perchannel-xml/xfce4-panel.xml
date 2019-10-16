@@ -22,7 +22,7 @@
   </property>
   <property name="plugins" type="empty">
     <property name="plugin-1" type="string" value="directorymenu">
-      <property name="base-directory" type="string" value="/headless"/>
+      <property name="base-directory" type="string" value="/home/user"/>
     </property>
     <property name="plugin-2" type="string" value="launcher">
       <property name="items" type="array">
