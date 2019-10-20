@@ -80,3 +80,13 @@ b-ip ()
 	# External IP Lookup
 	echo -n "External IP: " ; wget http://smart-ip.net/myip -O - -q
 }
+
+
+alias b-git-findcommit='!git log --oneline --date=short --pretty=format:"%Cred%<(10)%h%Creset%Cgreen%<(20)%an%Creset%Cblue%<(15)%ad%Creset%<(20)%s" --source --all -S'
+alias b-git-fc='!git log --oneline --date=short --pretty=format:"%Cred%<(10)%h%Creset%Cgreen%<(20)%an%Creset%Cblue%<(15)%ad%Creset%<(20)%s" --source --all -S'
+alias b-git-hist='log --graph --oneline --decorate --all'
+alias b-git-ls='log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate'
+alias b-git-ll='log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat'
+alias b-git-la='"!git config -l | grep alias | cut -c 7-"'
+alias b-git-rekt='reset --hard'
+ 
