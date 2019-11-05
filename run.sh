@@ -5,6 +5,7 @@ RANDOM_PASSWORD=$(openssl rand -hex 10)
 echo "Generated password is: $RANDOM_PASSWORD"
 
 docker run \
+--privileged \
 --name vnc \
 --detach \
 --shm-size=256m \
