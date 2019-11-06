@@ -37,6 +37,7 @@ RUN apt-get install -y file
 RUN apt-get install -y gnupg
 RUN apt-get install -y bzip2
 RUN apt-get install -y python-numpy
+RUN apt-get install -y file-roller
 RUN apt-get clean -y
 
 # Generate locales for en_US.UTF-8 and set language to english from generated locale
