@@ -2,7 +2,7 @@
 set -e
 
 mkdir $HOME/.ssh
-ssh-keygen -t rsa -b 4096 -q -N "" -C $GIT_EMAIL -f $HOME/.ssh/id_rsa
+ssh-keygen -t rsa -b 4096 -q -N "" -f $HOME/.ssh/id_rsa
 cat $HOME/.ssh/id_rsa.pub >> $HOME/.ssh/authorized_keys
 
 echo "Host github.com" >> $HOME/.ssh/config
