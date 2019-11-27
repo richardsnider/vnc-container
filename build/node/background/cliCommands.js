@@ -169,6 +169,14 @@ module.exports = [
     },
     {
         command: `pw groupmod admin -m newmember`,
-        comment: `# Add a new member to a group `
+        comment: `# Add a new member to a group`
     },
+    {
+        command: `git config --global user.name "John Doe"`,
+        comment: `Set git username`
+    },
+    {
+        command: `git config --global user.email jdoe@example.com`,
+        comment: `Set git email address`
+    }
 ]
