@@ -1,5 +1,5 @@
 # Search these for commands listed here
-alias b-help='grep ~/.bashrc'
+alias b-help='cat $SETUP_SCRIPTS/bashrc_content.sh | grep'
 
 # Show folder contents
 alias b-ls='echo "Dir Size|Perms|Link Count|Owner|Group|Size|Mod. Time|Name"; ls -AFhls --color --group-directories-first'
