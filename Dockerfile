@@ -51,7 +51,6 @@ ADD ./build/install-scripts/ $INSTALL_SCRIPTS/
 RUN find $INSTALL_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 
 RUN $INSTALL_SCRIPTS/git.sh
-RUN $INSTALL_SCRIPTS/brew.sh
 RUN $INSTALL_SCRIPTS/python.sh
 RUN $INSTALL_SCRIPTS/golang.sh
 RUN $INSTALL_SCRIPTS/nodejs.sh
