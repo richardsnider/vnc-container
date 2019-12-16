@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:19.10
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager" \
       io.k8s.display-name="Headless Ubuntu VNC Container"
