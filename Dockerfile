@@ -27,7 +27,9 @@ RUN apt-get -q update
 RUN apt-get install -y apt-utils
 RUN apt-get install -y software-properties-common
 RUN apt-get -q update
-RUN apt-get install -y vim
+RUN apt-get upgrade -y
+RUN apt-get autoremove -y
+
 RUN apt-get install -y wget
 RUN apt-get install -y net-tools
 RUN apt-get install -y locales
@@ -38,13 +40,11 @@ RUN apt-get install -y gnupg
 RUN apt-get install -y bzip2
 RUN apt-get install -y python-numpy
 RUN apt-get install -y file-roller
-RUN apt-get clean -y
+RUN apt-get install -y jq
 
 # Generate locales for en_US.UTF-8 and set language to english from generated locale
 RUN locale-gen en_US.UTF-8
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8' FONTCONFIG_PATH='/etc/fonts/'
-
-RUN apt-get upgrade -y
 
 # Copy install scripts into the container and make them executable
 ADD ./build/install-scripts/ $INSTALL_SCRIPTS/
@@ -71,8 +71,6 @@ ADD ./build/xfce/ $HOME/
 RUN $INSTALL_SCRIPTS/libnss_wrapper.sh
 ADD ./build/startup-scripts $STARTUP_DIRECTORY
 RUN $INSTALL_SCRIPTS/set_user_permission.sh $STARTUP_DIRECTORY $HOME
-
-RUN apt-get autoremove -y
 
 ADD ./build/node $NODE_SCRIPTS/
 RUN chown -R 1000 $NODE_SCRIPTS
