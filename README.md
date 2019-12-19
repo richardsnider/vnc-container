@@ -122,6 +122,18 @@ If you open some graphic/work intensive websites in the Docker container (especi
 * Merge to `master`
 * Create a release on [github.com/vorprog/headless-vnc-container/releases/new](https://github.com/vorprog/headless-vnc-container/releases/new)
 
+### File Transferring
+
+Copy a file from container to host:
+```
+docker cp <CONTAINER ID:/home/user/foo.txt ./foo.txt
+```
+
+Copy a file from host to container:
+```
+docker cp foo.txt <CONTAINER ID>:/home/user/foo.txt
+```
+
 ## Kubernetes
 
 It's also possible to run the images in the [Kubernetes](https://kubernetes.io) container orchestration platform. For more information how to deploy containers in the cluster, take a look at:
