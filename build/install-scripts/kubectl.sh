@@ -8,4 +8,3 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list
 apt-get -q update 
 apt-get install -y kubectl
-apt-get clean -y
