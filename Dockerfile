@@ -65,7 +65,7 @@ RUN $INSTALL_SCRIPTS/chrome.sh
 RUN $INSTALL_SCRIPTS/xfce_ui.sh
 
 # Copy xfce configuration to container
-ADD ./build/xfce/ $HOME/
+ADD ./build/xfce_v14/ $HOME/
 
 # Configure startup
 RUN $INSTALL_SCRIPTS/libnss_wrapper.sh
