@@ -47,7 +47,7 @@ cleanup () {
 trap cleanup SIGINT SIGTERM
 
 # write correct window size to chrome properties
-$STARTUP_DIRECTORY/chrome-init.sh
+# $STARTUP_DIRECTORY/chrome-init.sh
 
 # resolve_vnc_connection
 VNC_IP=$(hostname -i)
