@@ -35,6 +35,7 @@ RUN apt-get install -y net-tools
 RUN apt-get install -y locales
 RUN apt-get install -y build-essential
 RUN apt-get install -y curl
+RUN apt-get install -y vim
 RUN apt-get install -y file
 RUN apt-get install -y gnupg
 RUN apt-get install -y bzip2
