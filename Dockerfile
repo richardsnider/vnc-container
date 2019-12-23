@@ -1,5 +1,7 @@
 FROM ubuntu:19.10
 
+RUN useradd -ms /bin/bash -u 1000 user
+
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager" \
       io.k8s.display-name="Headless Ubuntu VNC Container"
 
@@ -79,13 +81,10 @@ RUN chown -R 1000 $NODE_SCRIPTS
 ADD ./build/setup-scripts $SETUP_SCRIPTS/
 RUN find $SETUP_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 
-RUN useradd -ms /bin/bash -u 1000 user
-
 # Root user (UID 0) is no longer needed. Change user to the first normal non-root user (UID 1000)
 USER 1000
 
 WORKDIR $NODE_SCRIPTS
-
 RUN npm install
 RUN node generateBackground.js
 
