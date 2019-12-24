@@ -8,14 +8,14 @@ USAGE:
 docker run -it -p 6901:6901 -p 5901:5901 <image>:<tag> <option>
 
 IMAGES:
-ubuntu-xfce-vnc
+perennial
 
 OPTIONS:
 -w, --wait      (default) keeps the UI and the vncserver up until SIGINT or SIGTERM will received
 -s, --skip      skip the vnc startup and just execute the assigned command.
-                example: docker run ubuntu-xfce-vnc --skip bash
+                example: docker run perennial --skip bash
 -d, --debug     enables more detailed startup output
-                e.g. 'docker run ubuntu-xfce-vnc --debug bash'
+                e.g. 'docker run perennial --debug bash'
 -h, --help      print out this help
 "
 }

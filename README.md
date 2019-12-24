@@ -12,23 +12,23 @@ This repository contains a headless ubuntu Docker image with the following compo
 ## Usage
 - Build image from scratch:
 
-      docker build -t ubuntu-xfce-vnc .
+      docker build -t perennial .
 
 - Print out help page:
 
-      docker run ubuntu-xfce-vnc --help
+      docker run perennial --help
 
 - Run command with mapping to local port `5901` (vnc protocol) and `6901` (vnc web access):
 
-      docker run -d -p 5901:5901 -p 6901:6901 ubuntu-xfce-vnc
+      docker run -d -p 5901:5901 -p 6901:6901 perennial
   
 - Change the default user and group within a container to your own by adding `--user $(id -u):$(id -g)`:
 
-      docker run -d -p 5901:5901 -p 6901:6901 --user $(id -u):$(id -g) ubuntu-xfce-vnc
+      docker run -d -p 5901:5901 -p 6901:6901 --user $(id -u):$(id -g) perennial
 
 - If you want to get into the container use interactive mode `-it` and `bash`
       
-      docker run -it -p 5901:5901 -p 6901:6901 ubuntu-xfce-vnc bash
+      docker run -it -p 5901:5901 -p 6901:6901 perennial bash
 
 ## Connect & Control
 If the container is started like mentioned above, connect via one of these options:
@@ -44,7 +44,7 @@ By default, the image runs as a non-root user. If you want to extend the image a
 
 ```bash
 # Custom Dockerfile
-FROM ubuntu-xfce-vnc
+FROM perennial
 
 # Switch to root user (UID 0) to install additional software
 USER 0
@@ -63,11 +63,11 @@ By default, all container processes will be executed with user id `1000`. You ca
 
 To change to the root user (user id `0`):
 
-    docker run -it --user 0 -p 6901:6901 ubuntu-xfce-vnc
+    docker run -it --user 0 -p 6901:6901 perennial
 
 To change to the user and group id of host system:
 
-    docker run -it -p 6901:6901 --user $(id -u):$(id -g) ubuntu-xfce-vnc
+    docker run -it -p 6901:6901 --user $(id -u):$(id -g) perennial
 
 ### Override VNC environment variables
 The following VNC environment variables can be overwritten at the `docker run` phase to customize your desktop environment inside the container:
@@ -77,15 +77,15 @@ The following VNC environment variables can be overwritten at the `docker run` p
 
 To override the VNC password:
 
-    docker run -it -p 5901:5901 -p 6901:6901 -e VNC_PW=my-pw ubuntu-xfce-vnc
+    docker run -it -p 5901:5901 -p 6901:6901 -e VNC_PW=my-pw perennial
 
 To override the VNC resolution:
 
-    docker run -it -p 5901:5901 -p 6901:6901 -e VNC_RESOLUTION=800x600 ubuntu-xfce-vnc
+    docker run -it -p 5901:5901 -p 6901:6901 -e VNC_RESOLUTION=800x600 perennial
     
 You can also set the environment variable `VNC_VIEW_ONLY=true`. If set, the startup script will create a random password for the control connection and use the value of `VNC_PW` to limit viewing only over the VNC connection:
 
-     docker run -it -p 5901:5901 -p 6901:6901 -e VNC_VIEW_ONLY=true ubuntu-xfce-vnc
+     docker run -it -p 5901:5901 -p 6901:6901 -e VNC_VIEW_ONLY=true perennial
 
 ### Suggested usage
 
@@ -93,7 +93,7 @@ Generate random password and run in high resolution:
 
 ```
   export RANDOM_PASSWORD=$(openssl rand -hex 10) && \
-  docker run -d --shm-size=256m -p 5901:5901 -p 6901:6901 -e VNC_RESOLUTION=1920x1080 -e VNC_PW=$RANDOM_PASSWORD ubuntu-xfce-vnc && \
+  docker run -d --shm-size=256m -p 5901:5901 -p 6901:6901 -e VNC_RESOLUTION=1920x1080 -e VNC_PW=$RANDOM_PASSWORD perennial && \
   echo "Generated password is: $RANDOM_PASSWORD" && \
   unset RANDOM_PASSWORD
 ```
@@ -108,7 +108,7 @@ On mac, you can login via screenshare with this command:
 #### Chromium crashes with high VNC_RESOLUTION
 If you open some graphic/work intensive websites in the Docker container (especially with high resolutions e.g. `1920x1080`) Chromium can sometimes crash without any specific reason. The problem there is the `/dev/shm` is too small in the container. Currently, the only solution is to define this size on startup via `--shm-size`:
 
-    docker run --shm-size=256m -it -p 6901:6901 -e VNC_RESOLUTION=1920x1080 ubuntu-xfce-vnc chromium-browser http://map.norsecorp.com/
+    docker run --shm-size=256m -it -p 6901:6901 -e VNC_RESOLUTION=1920x1080 perennial chromium-browser http://map.norsecorp.com/
 
 ## How to release
 * Check if all features are merged and pushed
@@ -138,7 +138,7 @@ docker cp foo.txt <CONTAINER ID>:/home/user/foo.txt
 
 It's also possible to run the images in the [Kubernetes](https://kubernetes.io) container orchestration platform. For more information how to deploy containers in the cluster, take a look at:
 
-### Deploy one pod of `ubuntu-xfce-vnc` image and expose a service
+### Deploy one pod of `perennial` image and expose a service
  
 On an already logged in Kubernetes cluster just use the predefined deployment with service config [`deployment.yaml`](deployment.yaml): 
 

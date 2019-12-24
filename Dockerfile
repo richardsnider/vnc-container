@@ -3,7 +3,7 @@ FROM ubuntu:19.10
 RUN useradd -ms /bin/bash -u 1000 user
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager" \
-      io.k8s.display-name="Headless Ubuntu VNC Container"
+      io.k8s.display-name="Perennial"
 
 ENV DISPLAY=:1 \
     VNC_PORT=5901 \
