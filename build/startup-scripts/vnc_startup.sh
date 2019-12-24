@@ -88,8 +88,8 @@ echo -e "start vncserver with param: VNC_COL_DEPTH=$VNC_COL_DEPTH, VNC_RESOLUTIO
 if [[ $DEBUG == true ]]; then echo "vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION"; fi
 vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION &> $STARTUP_DIRECTORY/no_vnc_startup.log
 
-echo -e "starting edex -ui"
-/usr/local/bin/edex-ui/edex-ui
+echo -e "starting edex -ui ..."
+edex-ui
 
 echo -e "start window manager\n..."
 $HOME/wm_startup.sh &> $STARTUP_DIRECTORY/wm_startup.log
