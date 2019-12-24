@@ -66,6 +66,7 @@ RUN $INSTALL_SCRIPTS/no_vnc.sh
 RUN $INSTALL_SCRIPTS/firefox.sh
 RUN $INSTALL_SCRIPTS/chrome.sh
 RUN $INSTALL_SCRIPTS/xfce_ui.sh
+RUN $INSTALL_SCRIPTS/edex-ui.sh
 
 # Copy xfce configuration to container
 ADD ./build/xfce_v14/ $HOME/
