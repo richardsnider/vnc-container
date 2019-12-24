@@ -1,6 +1,6 @@
 {
     "shell": "bash",
-    "cwd": "~",
+    "cwd": "/home/user",
     "keyboard": "en-US",
     "theme": "red",
     "termFontSize": 15,
