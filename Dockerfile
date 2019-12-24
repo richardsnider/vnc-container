@@ -68,8 +68,7 @@ RUN $INSTALL_SCRIPTS/xfce_ui.sh
 RUN $INSTALL_SCRIPTS/edex-ui.sh
 
 # Copy xfce configuration to container
-ADD ./build/xfce_v14/ $HOME/
-RUN chown -R 1000 $HOME/.config
+ADD --chown=1000 ./build/xfce_v14/ $HOME/
 
 # Configure startup
 RUN $INSTALL_SCRIPTS/libnss_wrapper.sh
@@ -81,12 +80,9 @@ USER 1000
 
 ADD ./build/.bashrc $HOME/.bashrc
 
-ADD ./build/node $NODE_SCRIPTS/
-WORKDIR $NODE_SCRIPTS
-RUN npm install
-RUN node generateBackground.js
-
-WORKDIR $HOME
+ADD --chown=1000 ./build/node $NODE_SCRIPTS/
+RUN npm install --prefix $NODE_SCRIPTS
+RUN node $NODE_SCRIPTS/generateBackground.js
 
 # Change default entrypoint from `/bin/sh -c` to `/dockerstartup/vnc_startup.sh` and add --wait option by default
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
