@@ -70,6 +70,7 @@ RUN $INSTALL_SCRIPTS/edex-ui.sh
 
 # Copy xfce configuration to container
 ADD ./build/xfce_v14/ $HOME/
+RUN chown -R 1000 $HOME/.config
 
 # Configure startup
 RUN $INSTALL_SCRIPTS/libnss_wrapper.sh
