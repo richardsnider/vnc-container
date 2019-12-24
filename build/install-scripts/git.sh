@@ -4,7 +4,7 @@ set -e
 apt-get -y install git
 
 mkdir $HOME/git
-chown -R 1000 $HOME/git
+chown --recursive 1000 $HOME/git
 
 mkdir $HOME/.ssh
 ssh-keygen -t rsa -b 4096 -q -N "" -f $HOME/.ssh/id_rsa

@@ -12,5 +12,5 @@ chmod +x eDEX-UI.Linux.x86_64.AppImage
 rm eDEX-UI.Linux.x86_64.AppImage
 
 mv ./squashfs-root /usr/local/bin/edex-ui-resources
-chown -R 1000 /usr/local/bin/edex-ui-resources
+chown --recursive 1000 /usr/local/bin/edex-ui-resources
 ln --symbolic /usr/local/bin/edex-ui-resources/edex-ui /usr/local/bin/edex-ui
