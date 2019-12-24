@@ -14,7 +14,6 @@ ENV HOME=/home/user \
     TERM=xterm \
     STARTUP_DIRECTORY=/dockerstartup \
     INSTALL_SCRIPTS=/home/user/build/install \
-    SETUP_SCRIPTS=/home/user/build/setup \
     NODE_SCRIPTS=/home/user/build/node_scripts \
     NO_VNC_HOME=/home/user/noVNC \
     DEBIAN_FRONTEND=noninteractive \
@@ -77,27 +76,17 @@ RUN $INSTALL_SCRIPTS/libnss_wrapper.sh
 ADD ./build/startup-scripts $STARTUP_DIRECTORY
 RUN $INSTALL_SCRIPTS/set_user_permission.sh $STARTUP_DIRECTORY $HOME
 
-ADD ./build/node $NODE_SCRIPTS/
-RUN chown -R 1000 $NODE_SCRIPTS
-
-ADD ./build/setup-scripts $SETUP_SCRIPTS/
-RUN find $SETUP_SCRIPTS -name '*.sh' -exec chmod a+x {} +
-
 # Root user (UID 0) is no longer needed. Change user to the first normal non-root user (UID 1000)
 USER 1000
 
 ADD ./build/.bashrc $HOME/.bashrc
 
+ADD ./build/node $NODE_SCRIPTS/
 WORKDIR $NODE_SCRIPTS
 RUN npm install
 RUN node generateBackground.js
 
 WORKDIR $HOME
-
-RUN echo 'source $SETUP_SCRIPTS/bashrc_content.sh' >> $HOME/.bashrc
-
-RUN mkdir $HOME/git
-RUN $SETUP_SCRIPTS/ssh_setup.sh
 
 # Change default entrypoint from `/bin/sh -c` to `/dockerstartup/vnc_startup.sh` and add --wait option by default
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
