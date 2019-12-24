@@ -19,5 +19,5 @@ echo "IdentityFile $HOME/.ssh/id_rsa" >> $HOME/.ssh/config
 eval "$(ssh-agent -s)"
 ssh-add $HOME/.ssh/id_rsa
 
-chmod 700 $HOME/.ssh
-chown -R 1000 $HOME/.ssh
+chmod --recursive 700 $HOME/.ssh
+chown --recursive 1000 $HOME/.ssh
