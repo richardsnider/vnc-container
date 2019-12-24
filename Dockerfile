@@ -86,6 +86,8 @@ RUN find $SETUP_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 # Root user (UID 0) is no longer needed. Change user to the first normal non-root user (UID 1000)
 USER 1000
 
+ADD ./build/.bashrc $HOME/.bashrc
+
 WORKDIR $NODE_SCRIPTS
 RUN npm install
 RUN node generateBackground.js
