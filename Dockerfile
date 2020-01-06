@@ -54,7 +54,6 @@ RUN find $INSTALL_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 
 RUN $INSTALL_SCRIPTS/git.sh
 RUN $INSTALL_SCRIPTS/python.sh
-RUN $INSTALL_SCRIPTS/golang.sh
 RUN $INSTALL_SCRIPTS/nodejs.sh
 RUN $INSTALL_SCRIPTS/kubectl.sh
 RUN $INSTALL_SCRIPTS/kops.sh
