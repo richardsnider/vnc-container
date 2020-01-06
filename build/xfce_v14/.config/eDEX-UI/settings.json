@@ -2,7 +2,7 @@
     "shell": "bash",
     "cwd": "/home/user",
     "keyboard": "en-US",
-    "theme": "red",
+    "theme": "chalkboard",
     "termFontSize": 15,
     "audio": true,
     "disableFeedbackAudio": false,
