@@ -13,7 +13,7 @@ echo "Timestamp: $timestamp" | tee $outputFileName
 
 echo "Rebuild from scratch (--no-cache)? (y/n)"
 read $REBUILD_PERENNIAL_FROM_SCRATCH
-if [ "$REBUILD_PERENNIAL_FROM_SCRATCH" = "y" || "$REBUILD_PERENNIAL_FROM_SCRATCH" = "yes" || "$REBUILD_PERENNIAL_FROM_SCRATCH" = "Y"]
+if [[ "$REBUILD_PERENNIAL_FROM_SCRATCH" = "y" || "$REBUILD_PERENNIAL_FROM_SCRATCH" = "yes" || "$REBUILD_PERENNIAL_FROM_SCRATCH" = "Y" ]];
 then docker build --no-cache -t perennial:latest -t perennial:$tag . | tee $outputFileName
 else docker build -t perennial:latest -t perennial:$tag . | tee $outputFileName
 fi
