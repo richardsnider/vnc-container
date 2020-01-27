@@ -1,5 +1,18 @@
 Inspired by the [headless vnc container](https://github.com/consol/docker-headless-vnc-container) by [Consol](https://labs.consol.de/)
 
+# Quickstart
+Run the following commands:
+  ```
+  chmod +x build.sh
+  ./build.sh
+  chmod +x run.sh
+  ./run.sh
+  ```
+
+Then open a web browser at `localhost:6901/vnc.html` and paste the password generated from `run.sh`.
+
+If you want to setup git run `b-git-setup`
+
 # Ubuntu based Docker container image with "headless" VNC session
 
 This repository contains a headless ubuntu Docker image with the following components:
@@ -12,23 +25,31 @@ This repository contains a headless ubuntu Docker image with the following compo
 ## Usage
 - Build image from scratch:
 
-      docker build -t perennial .
+      ./build.sh
 
-- Print out help page:
+- Search for build errors:
 
-      docker run perennial --help
+      grep -E -- 'error|fail|warning' "./logs/some_name_build.log"
 
-- Run command with mapping to local port `5901` (vnc protocol) and `6901` (vnc web access):
+- Run container:
 
-      docker run -d -p 5901:5901 -p 6901:6901 perennial
+      ./run.sh
+
+- Check container status:
+
+  docker ps
   
-- Change the default user and group within a container to your own by adding `--user $(id -u):$(id -g)`:
+- Log into root cli:
 
-      docker run -d -p 5901:5901 -p 6901:6901 --user $(id -u):$(id -g) perennial
+  docker exec -it perennial /bin/bash
 
-- If you want to get into the container use interactive mode `-it` and `bash`
-      
-      docker run -it -p 5901:5901 -p 6901:6901 perennial bash
+- Stop perennial container:
+
+  docker stop perennial
+
+- Restart container:
+
+  docker start perennial
 
 ## Connect & Control
 If the container is started like mentioned above, connect via one of these options:
