@@ -24,7 +24,6 @@ if [[ $1 =~ -h|--help ]]; then
     exit 0
 fi
 
-# should also source $STARTUP_DIRECTORY/generate_container_user
 source $HOME/.bashrc
 
 # add `--skip` to startup args, to skip the VNC startup procedure
