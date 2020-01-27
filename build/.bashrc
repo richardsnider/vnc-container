@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Set current user in nss_wrapper
 USER_ID=$(id -u)
 GROUP_ID=$(id -g)
@@ -117,3 +119,51 @@ alias b-git-ll='log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%c
 alias b-git-la='"!git config -l | grep alias | cut -c 7-"'
 alias b-git-rekt='reset --hard'
  
+b-git-setup ()
+{
+	echo "GIT_USERNAME:"
+	read GIT_USERNAME
+	git config --global user.name $GIT_USERNAME
+	echo "GIT_EMAIL:"
+	read GIT_EMAIL
+	git config --global user.email $GIT_EMAIL
+	generate-ssh-key () {
+		ssh-keygen -t rsa -b 4096 -q -N "" -f $HOME/.ssh/id_rsa
+	}
+	set-ssh-key () {
+		echo "PRIVATE_SSH_KEY:"
+		read -s PRIVATE_SSH_KEY
+		echo $PRIVATE_SSH_KEY >> $HOME/.ssh/id_rsa
+		echo "PUBLIC_SSH_KEY:"
+		read -s PUBLIC_SSH_KEY
+		echo $PUBLIC_SSH_KEY >> $HOME/.ssh/id_rsa.pub
+	}
+	echo "Generate new ssh key? [ y/N ]:"
+	read GENERATE_SSH_KEY_DECISION
+	if [[ "$GENERATE_SSH_KEY_DECISION" = "y" || "$GENERATE_SSH_KEY_DECISION" = "yes" || "$GENERATE_SSH_KEY_DECISION" = "Y" ]];
+	then generate-ssh-key
+	else set-ssh-key
+	fi
+	cat $HOME/.ssh/id_rsa.pub >> $HOME/.ssh/authorized_keys
+	echo "Host github.com" >> $HOME/.ssh/config
+	echo "User git" >> $HOME/.ssh/config
+	echo "Hostname github.com" >> $HOME/.ssh/config
+	echo "PreferredAuthentications publickey" >> $HOME/.ssh/config
+	echo "IdentityFile $HOME/.ssh/id_rsa" >> $HOME/.ssh/config
+	eval "$(ssh-agent -s)"
+	ssh-add $HOME/.ssh/id_rsa
+	chmod --recursive 700 $HOME/.ssh
+	chown --recursive 1000 $HOME/.ssh
+	mkdir ~/git
+	cd ~/git
+	echo "Enter a comma separated list of repository urls you wish to clone: "
+	read GIT_REPOSITORIES
+	# iterate through comma separated list and git clone for each
+	for i in $(echo $GIT_REPOSITORIES | sed "s/,/ /g")
+	do
+		git clone $i
+	done
+	echo "NPM_ORG_NAME"
+	read NPM_ORG_NAME
+	npm adduser --registry=https://registry.npmjs.org --scope=@$NPM_ORG_NAME
+}
