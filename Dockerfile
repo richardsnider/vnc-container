@@ -44,6 +44,9 @@ RUN $BUILD_DIRECTORY/vnc/set_user_permission.sh $STARTUP_DIRECTORY $HOME
 
 RUN chown -R user:user $HOME
 
+# Root user (UID 0) is no longer needed. Change user to the first normal non-root user (UID 1000)
+USER 1000
+
 # Change default entrypoint from `/bin/sh -c` to `/startup/vnc_startup.sh` and add --wait option by default
 ENTRYPOINT ["/startup/vnc_startup.sh"]
 CMD ["--wait"]
