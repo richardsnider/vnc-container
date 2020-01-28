@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
+export HOME=/home/user
+export TERM=xterm
+export DEBIAN_FRONTEND=noninteractive
+
 apt-get -q update
 apt-get install -y apt-utils
 apt-get install -y software-properties-common
