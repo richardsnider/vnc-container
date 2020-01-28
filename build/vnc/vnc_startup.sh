@@ -45,9 +45,6 @@ cleanup () {
 }
 trap cleanup SIGINT SIGTERM
 
-# write correct window size to chrome properties
-# $STARTUP_DIRECTORY/chrome-init.sh
-
 # resolve_vnc_connection
 VNC_IP=$(hostname -i)
 
@@ -70,7 +67,6 @@ fi
 echo "$VNC_PW" | vncpasswd -f >> $PASSWD_PATH
 chmod 600 $PASSWD_PATH
 
-
 # start vncserver and noVNC webclient
 echo -e "\n------------------ start noVNC  ----------------------------"
 if [[ $DEBUG == true ]]; then echo "$NO_VNC_HOME/utils/launch.sh --vnc localhost:$VNC_PORT --listen $NO_VNC_PORT"; fi
@@ -87,8 +83,8 @@ echo -e "start vncserver with param: VNC_COL_DEPTH=$VNC_COL_DEPTH, VNC_RESOLUTIO
 if [[ $DEBUG == true ]]; then echo "vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION"; fi
 vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION &> $STARTUP_DIRECTORY/no_vnc_startup.log
 
-echo -e "starting edex -ui ..."
-edex-ui
+# echo -e "starting edex -ui ..."
+# edex-ui
 
 echo -e "start window manager\n..."
 $HOME/wm_startup.sh &> $STARTUP_DIRECTORY/wm_startup.log
