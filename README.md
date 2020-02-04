@@ -103,10 +103,6 @@ To override the VNC password:
 To override the VNC resolution:
 
     docker run -it -p 5901:5901 -p 6901:6901 -e VNC_RESOLUTION=800x600 perennial
-    
-You can also set the environment variable `VNC_VIEW_ONLY=true`. If set, the startup script will create a random password for the control connection and use the value of `VNC_PW` to limit viewing only over the VNC connection:
-
-     docker run -it -p 5901:5901 -p 6901:6901 -e VNC_VIEW_ONLY=true perennial
 
 ### Suggested usage
 

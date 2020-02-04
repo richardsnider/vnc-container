@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
-export HOME=/home/user
-export BUILD_DIRECTORY=/home/user/build
-export TERM=xterm
-export DEBIAN_FRONTEND=noninteractive
+echo "Create /etc/profile.d/vnc-environment-variables.sh"
+cp $BUILD_DIRECTORY/vnc/vnc-environment-variables.sh /etc/profile.d/vnc-environment-variables.sh
+chmod +x /etc/profile.d/vnc-environment-variables.sh
+source /etc/profile.d/vnc-environment-variables.sh
+# TODO? echo "source /etc/profile.d/vnc-environment-variables.sh" >> .bashrc
 
 echo "Install nss-wrapper to be able to execute image as non-root user"
 apt-get install -y libnss-wrapper gettext
@@ -20,6 +21,9 @@ wget -qO- https://github.com/novnc/websockify/archive/v0.6.1.tar.gz | tar xz --s
 chmod +x -v $NO_VNC_HOME/utils/*.sh
 # create index.html to forward automatically to `vnc_lite.html`
 ln -s $NO_VNC_HOME/vnc_lite.html $NO_VNC_HOME/index.html
+
+# TODO: is this redundant?
+find $BUILD_DIRECTORY/vnc -name '*.sh' -exec chmod a+x {} +
 
 echo "Create startup directory and move wm_startup and vnc_startup scripts"
 mkdir $STARTUP_DIRECTORY
