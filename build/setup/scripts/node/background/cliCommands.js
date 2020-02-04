@@ -173,19 +173,18 @@ module.exports = [
     },
     {
         command: `git config --global user.name "John Doe"`,
-        comment: `Set git username`
+        comment: `# Set git username`
     },
     {
         command: `git config --global user.email jdoe@example.com`,
-        comment: `Set git email address`
+        comment: `# Set git email address`
     },
     {
         command: `npm adduser --registry=https://registry.npmjs.org --scope=@myco`,
-        comment: `Login to npm`
+        comment: `# Login to npm`
     },
     {
         command: `npm publish --access public`,
-        comment: `Publish scoped package`
-
+        comment: `# Publish scoped package`
     }
 ]

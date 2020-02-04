@@ -32,3 +32,4 @@ chown -R user:user $HOME
 
 sudo -u user npm install --prefix $BUILD_DIRECTORY/setup/scripts/node
 sudo -u user node $BUILD_DIRECTORY/setup/scripts/node/generateBackground.js
+cp $BUILD_DIRECTORY/setup/scripts/node/background.svg $HOME/.config/background.svg

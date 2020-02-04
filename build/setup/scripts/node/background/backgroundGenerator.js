@@ -1,10 +1,5 @@
-const util = require('util');
-const os = require('os');
-const fs = require('fs');
 const cliCommands = require('./cliCommands');
 const _ = require('lodash');
-
-const writeFile = util.promisify(fs.writeFile);
 
 const svgHeader = `<svg height="1080pt" width="1920pt" xmlns="http://www.w3.org/2000/svg">`;
 const svgStyling = `<style>
@@ -49,7 +44,6 @@ const generateText = async () => {
 module.exports = {
     generateSvgBackground: async () => {
         const textElements = await generateText();
-        const svgData = svgHeader + svgStyling + svgBackgroundRect + textElements + svgClosingTag;
-        await writeFile(`${os.homedir()}/.config/background.svg`, svgData);
+        return svgHeader + svgStyling + svgBackgroundRect + textElements + svgClosingTag;
     }
 }
