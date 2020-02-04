@@ -52,6 +52,9 @@ alias b-connections="netstat -anpl | grep :80 | awk {'print \$5'} | cut -d\":\" 
 # Show open ports
 alias b-ports='netstat -nape --inet'
 
+# Show ip interaction history
+alias b-iptables='iptables -I INPUT -p tcp --dport 80 -j LOG && less +G --force /var/log/messages'
+
 # Alias's to show disk space and space used in a folder
 alias b-diskspace="du -S | sort -n -r |more"
 alias b-folders='du -h --max-depth=1'
