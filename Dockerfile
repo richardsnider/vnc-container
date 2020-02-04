@@ -2,6 +2,8 @@ FROM ubuntu:19.10
 
 ENV HOME=/home/user
 ENV BUILD_DIRECTORY=$HOME/build
+ENV TERM=xterm
+ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR $HOME
 
 ADD ./build/install-base-packages.sh $BUILD_DIRECTORY/install-base-packages.sh

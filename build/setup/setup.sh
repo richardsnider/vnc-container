@@ -4,12 +4,6 @@ set -e
 # Add default user
 useradd -ms /bin/bash -u 1000 user
 
-# Set environment variables
-export HOME=/home/user
-export BUILD_DIRECTORY=$HOME/build
-export TERM=xterm
-export DEBIAN_FRONTEND=noninteractive
-
 # Generate locales for en_US.UTF-8 and set language to english from generated locale
 locale-gen en_US.UTF-8
 LANG='en_US.UTF-8'
