@@ -11,10 +11,13 @@ LANGUAGE='en_US:en'
 LC_ALL='en_US.UTF-8'
 FONTCONFIG_PATH='/etc/fonts/'
 
-ls $BUILD_DIRECTORY
-
 find $BUILD_DIRECTORY/setup/scripts -name '*.sh' -exec chmod a+x {} +
 
+cp -r $BUILD_DIRECTORY/setup/content/.config $HOME/.config
+cp $BUILD_DIRECTORY/setup/content/.bashrc $HOME/.bashrc
+chown -R user:user $HOME
+
+$BUILD_DIRECTORY/setup/scripts/brew.sh
 $BUILD_DIRECTORY/setup/scripts/python.sh
 $BUILD_DIRECTORY/setup/scripts/nodejs.sh
 $BUILD_DIRECTORY/setup/scripts/kubectl.sh
@@ -26,10 +29,6 @@ $BUILD_DIRECTORY/setup/scripts/chrome.sh
 $BUILD_DIRECTORY/setup/scripts/xfce_ui.sh
 $BUILD_DIRECTORY/setup/scripts/edex-ui.sh
 
-cp -r $BUILD_DIRECTORY/setup/content/.config $HOME/.config
-cp $BUILD_DIRECTORY/setup/content/.bashrc $HOME/.bashrc
-chown -R user:user $HOME
-
 sudo -u user npm install --prefix $BUILD_DIRECTORY/setup/scripts/node
 sudo -u user node $BUILD_DIRECTORY/setup/scripts/node/generateBackground.js
-cp $BUILD_DIRECTORY/setup/scripts/node/background.svg $HOME/.config/background.svg
+mv background.svg $HOME/.config/background.svg

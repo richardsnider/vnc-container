@@ -29,6 +29,8 @@ if [ x"$USER_ID" != x"0" ]; then
     export LD_PRELOAD
 fi
 
+eval $($HOME/.linuxbrew/bin/brew shellenv)
+
 # Show folder contents
 alias b-ls='echo "Dir Size|Perms|Link Count|Owner|Group|Size|Mod. Time|Name"; ls -AFhls --color --group-directories-first'
 
