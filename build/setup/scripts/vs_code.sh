@@ -10,3 +10,12 @@ apt-get update
 apt-get install -y code
 
 rm ~/microsoft.gpg
+
+echo "Install SQLTools extension for VS Code"
+sudo -u user code --install-extension mtxr.sqltools
+
+echo "Alter user preferences "
+echo "{
+    \"editor.minimap.enabled\": false
+    \"editor.renderWhitespace\": \"all\",
+}" >> $HOME/.config/Code/User/settings.json
