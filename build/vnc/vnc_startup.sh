@@ -28,8 +28,6 @@ if [[ $1 =~ -h|--help ]]; then
     exit 0
 fi
 
-source $HOME/.bashrc
-
 # add `--skip` to startup args, to skip the VNC startup procedure
 if [[ $1 =~ -s|--skip ]]; then
     echo -e "\n\n------------------ SKIP VNC STARTUP -----------------"
@@ -65,6 +63,7 @@ fi
 
 echo "$VNC_PW" | vncpasswd -f >> $PASSWD_PATH
 chmod 600 $PASSWD_PATH
+unset $VNC_PW
 
 # start vncserver and noVNC webclient
 echo -e "\n------------------ start noVNC  ----------------------------"
@@ -81,9 +80,6 @@ vncserver -kill $DISPLAY &> $STARTUP_DIRECTORY/vnc_startup.log \
 echo -e "start vncserver with param: VNC_COL_DEPTH=$VNC_COL_DEPTH, VNC_RESOLUTION=$VNC_RESOLUTION\n..."
 if [[ $DEBUG == true ]]; then echo "vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION"; fi
 vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION &> $STARTUP_DIRECTORY/no_vnc_startup.log
-
-echo -e "starting edex -ui ..."
-edex-ui
 
 echo -e "start window manager\n..."
 $HOME/wm_startup.sh &> $STARTUP_DIRECTORY/wm_startup.log
