@@ -9,6 +9,13 @@ GROUP_ID=$(id -g)
 
 eval $($HOME/.linuxbrew/bin/brew shellenv)
 
+alias b-who='echo "user: $(whoami)" &&
+    echo "directory: $(pwd)" &&
+    echo "machine: $(uname -n)" &&
+    echo "operating system: $(uname -rs)" &&
+    echo "architecture: $(uname -m)" &&
+    echo "time: $(date)"'
+
 # Show folder contents
 alias b-ls='echo "Dir Size|Perms|Link Count|Owner|Group|Size|Mod. Time|Name"; ls -AFhls --color --group-directories-first'
 
