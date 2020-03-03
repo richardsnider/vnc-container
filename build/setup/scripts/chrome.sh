@@ -2,7 +2,7 @@
 set -e
 
 apt-get install -y fonts-liberation xdg-utils
-curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb --output chrome.deb
+curl --silent https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb --output chrome.deb
 dpkg -i chrome.deb
 rm chrome.deb
 
