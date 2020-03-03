@@ -20,8 +20,6 @@ chown -R user:user $HOME
 $BUILD_DIRECTORY/setup/scripts/brew.sh
 $BUILD_DIRECTORY/setup/scripts/python.sh
 $BUILD_DIRECTORY/setup/scripts/nodejs.sh
-$BUILD_DIRECTORY/setup/scripts/kubectl.sh
-$BUILD_DIRECTORY/setup/scripts/kops.sh
 $BUILD_DIRECTORY/setup/scripts/vs_code.sh
 $BUILD_DIRECTORY/setup/scripts/copyq.sh
 $BUILD_DIRECTORY/setup/scripts/firefox.sh

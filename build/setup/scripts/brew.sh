@@ -17,4 +17,11 @@ ln -s $HOME/.linuxbrew/Homebrew/bin/brew $HOME/.linuxbrew/bin
 eval $($HOME/.linuxbrew/bin/brew shellenv)
 
 brew update
+brew install sops
 brew install terraform
+brew install kops
+brew install kubectl
+brew install helm
+
+# brew install bash-completion
+# brew install kube-ps1
