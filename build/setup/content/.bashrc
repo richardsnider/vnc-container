@@ -1,5 +1,4 @@
 #!/bin/bash
-unset VNC_PW
 
 PS1='[$(date +"%y-%m-%d %H:%M:%S")]$'
 
