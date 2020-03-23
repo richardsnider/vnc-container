@@ -14,6 +14,7 @@ rm ~/microsoft.gpg
 echo "Install SQLTools extension for VS Code"
 sudo -u user code --install-extension mtxr.sqltools
 sudo -u user code --install-extension eamodio.gitlens
+sudo -u user code --install-extension mauve.terraform
 
 echo "Alter user preferences "
 echo "{
@@ -21,4 +22,5 @@ echo "{
     \"editor.renderWhitespace\": \"all\",
     \"editor.minimap.enabled\": false,
     \"extensions.ignoreRecommendations\": true,
+    \"terminal.integrated.shell.linux\": \"/bin/bash\",
 }" >> $HOME/.config/Code/User/settings.json
