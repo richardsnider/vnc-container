@@ -28,8 +28,6 @@ if [[ $1 =~ -h|--help ]]; then
     exit 0
 fi
 
-source $HOME/.bashrc
-
 # add `--skip` to startup args, to skip the VNC startup procedure
 if [[ $1 =~ -s|--skip ]]; then
     echo -e "\n\n------------------ SKIP VNC STARTUP -----------------"
