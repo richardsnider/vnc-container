@@ -142,3 +142,17 @@ b-setup ()
 
 	npm adduser --registry=https://registry.npmjs.org --scope=@$NPM_ORG_NAME
 }
+
+b-encrypt ()
+{
+	ENCRYPTED_FILE="${1:-secrets.yaml}"
+	DECRYPTED_FILE="${2:-${ENCRYPTED_FILE}.dec}"
+
+	# Using mozilla sops with the --encrypt option re-encrypts the entire file. This makes sops only encrypt values that have changed.
+	# sops uses the $EDITOR variable to specify it's command
+	# The -c option passes commands into vim, :r copies the contents from a file, and :x automatically closes and saves the file
+	export EDITOR="vim -c \":r $DECRYPTED_FILE | :x\""
+
+	sops $ENCRYPTED_FILE
+	unset EDITOR
+}
