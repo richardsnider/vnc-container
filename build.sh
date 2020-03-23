@@ -11,9 +11,9 @@ outputFileName="./logs/${tag}_build.log"
 timestamp="$(date +"%Y-%m-%d-T-%H-%M-%S")"
 echo "Timestamp: $timestamp" | tee $outputFileName
 
-echo "Rebuild from scratch (--no-cache)? (y/n)"
-read $REBUILD_PERENNIAL_FROM_SCRATCH
-if [[ "$REBUILD_PERENNIAL_FROM_SCRATCH" = "y" || "$REBUILD_PERENNIAL_FROM_SCRATCH" = "yes" || "$REBUILD_PERENNIAL_FROM_SCRATCH" = "Y" ]];
-then docker build --no-cache -t perennial:latest -t perennial:$tag . | tee $outputFileName
-else docker build -t perennial:latest -t perennial:$tag . | tee $outputFileName
+read -p "Rebuild from scratch (--no-cache)? (y/n)" PERENNIAL_NO_CACHE
+if [[ "$PERENNIAL_NO_CACHE" = "y" || "$PERENNIAL_NO_CACHE" = "Y" || "$PERENNIAL_NO_CACHE" = "yes" ]]; then
+    docker build --no-cache -t perennial:latest -t perennial:$tag . | tee $outputFileName
+else 
+    docker build -t perennial:latest -t perennial:$tag . | tee $outputFileName
 fi
