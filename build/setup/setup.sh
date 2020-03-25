@@ -11,12 +11,14 @@ LANGUAGE='en_US:en'
 LC_ALL='en_US.UTF-8'
 FONTCONFIG_PATH='/etc/fonts/'
 
-find $BUILD_DIRECTORY/setup/scripts -name '*.sh' -exec chmod a+x {} +
-
-cp -r $BUILD_DIRECTORY/setup/content/.config $HOME/.config
 cp $BUILD_DIRECTORY/setup/content/.bashrc $HOME/.bashrc
+cp -r $BUILD_DIRECTORY/setup/content/.config $HOME/.config
+cp -r $BUILD_DIRECTORY/setup/content/tools /usr/local/bin
+find $BUILD_DIRECTORY/setup/content/tools -name '*.sh' -exec chmod a+x {} +
+
 chown -R user:user $HOME
 
+find $BUILD_DIRECTORY/setup/scripts -name '*.sh' -exec chmod a+x {} +
 $BUILD_DIRECTORY/setup/scripts/brew.sh
 $BUILD_DIRECTORY/setup/scripts/python.sh
 $BUILD_DIRECTORY/setup/scripts/nodejs.sh
