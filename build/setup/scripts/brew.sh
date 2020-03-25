@@ -18,6 +18,7 @@ eval $($HOME/.linuxbrew/bin/brew shellenv)
 
 brew update
 brew install sops
+brew install awscli
 brew install terraform
 brew install kops
 brew install kubectl
