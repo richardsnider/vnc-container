@@ -111,37 +111,6 @@ alias b-git-ll='log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%c
 alias b-git-la='"!git config -l | grep alias | cut -c 7-"'
 alias b-git-rekt='reset --hard'
  
-b-setup ()
-{
-	ssh-keygen -t rsa -b 4096 -q -N "" -f $HOME/.ssh/id_rsa
-	echo $PRIVATE_SSH_KEY >> $HOME/.ssh/id_rsa
-	echo $PUBLIC_SSH_KEY >> $HOME/.ssh/id_rsa.pub
-	
-	echo "Host github.com" >> $HOME/.ssh/config
-	echo "User git" >> $HOME/.ssh/config
-	echo "Hostname github.com" >> $HOME/.ssh/config
-	echo "PreferredAuthentications publickey" >> $HOME/.ssh/config
-	echo "IdentityFile $HOME/.ssh/id_rsa" >> $HOME/.ssh/config
-
-	cat $HOME/.ssh/id_rsa.pub >> $HOME/.ssh/authorized_keys
-	eval "$(ssh-agent -s)"
-
-	ssh-add $HOME/.ssh/id_rsa
-	chmod --recursive 700 $HOME/.ssh
-
-	git config --global user.name $GIT_USERNAME
-	git config --global user.email $GIT_EMAIL
-
-	mkdir ~/git
-	cd git
-	# iterate through comma separated list and git clone for each
-	for i in $(echo $GIT_REPOSITORIES | sed "s/,/ /g")
-	do
-		git clone $i
-	done
-
-	npm adduser --registry=https://registry.npmjs.org --scope=@$NPM_ORG_NAME
-}
 
 b-encrypt ()
 {
