@@ -3,9 +3,6 @@ unset $VNC_PW
 
 PS1='[$(date +"%y-%m-%d %H:%M:%S")]$'
 
-# Set current user in nss_wrapper
-USER_ID=$(id -u)
-GROUP_ID=$(id -g)
 
 eval $($HOME/.linuxbrew/bin/brew shellenv)
 

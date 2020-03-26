@@ -7,9 +7,6 @@ echo "Create /etc/profile.d/vnc-environment-variables.sh"
 cp $BUILD_DIRECTORY/vnc/vnc-environment-variables.sh /etc/profile.d/vnc-environment-variables.sh
 source /etc/profile.d/vnc-environment-variables.sh
 
-echo "Install nss-wrapper to be able to execute image as non-root user"
-apt-get install -y libnss-wrapper gettext
-
 echo "Install TigerVNC server"
 wget -qO- https://dl.bintray.com/tigervnc/stable/tigervnc-1.8.0.x86_64.tar.gz | tar xz --strip 1 -C /
 
