@@ -20,11 +20,9 @@ chown -R user:user $HOME
 
 find $BUILD_DIRECTORY/setup/scripts -name '*.sh' -exec chmod a+x {} +
 $BUILD_DIRECTORY/setup/scripts/brew.sh
-$BUILD_DIRECTORY/setup/scripts/python.sh
 $BUILD_DIRECTORY/setup/scripts/nodejs.sh
 $BUILD_DIRECTORY/setup/scripts/vs_code.sh
 $BUILD_DIRECTORY/setup/scripts/copyq.sh
-$BUILD_DIRECTORY/setup/scripts/firefox.sh
 $BUILD_DIRECTORY/setup/scripts/chrome.sh
 $BUILD_DIRECTORY/setup/scripts/xfce_ui.sh
 $BUILD_DIRECTORY/setup/scripts/edex-ui.sh
