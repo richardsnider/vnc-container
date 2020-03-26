@@ -11,6 +11,8 @@ outputFileName="./logs/${tag}_build.log"
 timestamp="$(date +"%Y-%m-%d-T-%H-%M-%S")"
 echo "Timestamp: $timestamp" | tee $outputFileName
 
+docker pull registry.hub.docker.com/library/ubuntu:19.10
+
 read -p "Rebuild from scratch (--no-cache)? (y/n)" PERENNIAL_NO_CACHE
 if [[ "$PERENNIAL_NO_CACHE" = "y" || "$PERENNIAL_NO_CACHE" = "Y" || "$PERENNIAL_NO_CACHE" = "yes" ]]; then
     docker build --no-cache -t perennial:latest -t perennial:$tag . | tee $outputFileName

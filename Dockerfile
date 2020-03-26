@@ -1,4 +1,4 @@
-FROM ubuntu:19.10
+FROM registry.hub.docker.com/library/ubuntu:19.10
 
 ENV HOME=/home/user
 ENV BUILD_DIRECTORY=$HOME/build
