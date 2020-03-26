@@ -1,8 +1,9 @@
 #!/bin/bash
 unset $VNC_PW
 
-PS1='[$(date +"%y-%m-%d %H:%M:%S")]$'
-
+TERMINAL_COLOR_RESET="\033[0m"
+TERMINAL_PINK_BACKGROUND="\[\033[45m\]"
+PS1="$TERMINAL_PINK_BACKGROUND[\D{%m-%d %T}]\[$TERMINAL_COLOR_RESET\]\W$ "
 
 eval $($HOME/.linuxbrew/bin/brew shellenv)
 
