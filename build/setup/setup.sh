@@ -13,8 +13,9 @@ FONTCONFIG_PATH='/etc/fonts/'
 
 cp $BUILD_DIRECTORY/setup/content/.bashrc $HOME/.bashrc
 cp -r $BUILD_DIRECTORY/setup/content/.config $HOME/.config
-cp -r $BUILD_DIRECTORY/setup/content/tools /usr/local/bin
+
 find $BUILD_DIRECTORY/setup/content/tools -name '*.sh' -exec chmod a+x {} +
+cp $BUILD_DIRECTORY/setup/content/tools/* /usr/local/bin
 
 chown -R user:user $HOME
 
