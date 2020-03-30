@@ -12,3 +12,6 @@ docker run \
 -p 5901:5901 -p 6901:6901 \
 -e VNC_PW=$RANDOM_PASSWORD \
 perennial:latest
+
+sleep 2
+docker ps
