@@ -25,7 +25,6 @@ $BUILD_DIRECTORY/setup/scripts/vs_code.sh
 $BUILD_DIRECTORY/setup/scripts/copyq.sh
 $BUILD_DIRECTORY/setup/scripts/chrome.sh
 $BUILD_DIRECTORY/setup/scripts/xfce_ui.sh
-$BUILD_DIRECTORY/setup/scripts/edex-ui.sh
 
 sudo -u user npm install --prefix $BUILD_DIRECTORY/setup/scripts/node
 sudo -u user node $BUILD_DIRECTORY/setup/scripts/node/generateBackground.js
