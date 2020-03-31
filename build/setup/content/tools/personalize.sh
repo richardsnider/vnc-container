@@ -48,7 +48,7 @@ NPM_TOKEN=$(curl --silent \
   https://registry.npmjs.org/-/user/org.couchdb.user:$NPM_USERNAME 2>&1 | grep -Po \
   '(?<="token": ")[^"]*')
 npm set registry "https://registry.npmjs.org"
-npm set //your_registry/:_authToken $NPM_TOKEN
+npm set https://registry.npmjs.org/:_authToken $NPM_TOKEN
 
 mkdir -p ~/.aws
 echo $AWS_CREDENTIALS > ~/.aws/credentials
