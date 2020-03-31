@@ -6,8 +6,6 @@ echo "# Paste your personal settings here" >> $PERENNIAL_SETTINGS_FILE
 echo "" >> $PERENNIAL_SETTINGS_FILE
 vim -c ":$" $PERENNIAL_SETTINGS_FILE
 
-# load the variables from the file (ignoring comments)
-# $(cat $PERENNIAL_SETTINGS_FILE | sed -e '/^#/d' | xargs)
 chmod +x $PERENNIAL_SETTINGS_FILE
 source $PERENNIAL_SETTINGS_FILE
 
@@ -28,8 +26,8 @@ echo "IdentityFile $HOME/.ssh/id_rsa" >> $HOME/.ssh/config
 cat $HOME/.ssh/id_rsa.pub > $HOME/.ssh/authorized_keys
 eval "$(ssh-agent -s)"
 ssh-add -qv $HOME/.ssh/id_rsa
-
 chmod --recursive 700 $HOME/.ssh
+ssh -vT git@github.com
 
 git config --global user.name $GIT_USERNAME
 git config --global user.email $GIT_EMAIL
@@ -49,15 +47,10 @@ NPM_TOKEN=$(curl --silent \
   -X PUT --data '{"name": "$NPM_USERNAME", "password": "$NPM_PASSWORD"}' \
   https://registry.npmjs.org/-/user/org.couchdb.user:$NPM_USERNAME 2>&1 | grep -Po \
   '(?<="token": ")[^"]*')
-
 npm set registry "https://registry.npmjs.org"
 npm set //your_registry/:_authToken $NPM_TOKEN
 
-AWS_REGION="us-west-2"
-AWS_OUTPUT_FORMAT="json"
-echo "${AWS_ACCESS_KEY_ID}
-${AWS_SECRET_ACCESS_KEY}
-${AWS_REGION}
-${AWS_OUTPUT_FORMAT}" | aws configure
+mkdir -p ~/.aws
+echo $AWS_CREDENTIALS > ~/.aws/credentials
 
 shred --zero --remove $PERENNIAL_SETTINGS_FILE
