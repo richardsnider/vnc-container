@@ -22,6 +22,7 @@ chown -R user:user $HOME
 find $BUILD_DIRECTORY/setup/scripts -name '*.sh' -exec chmod a+x {} +
 $BUILD_DIRECTORY/setup/scripts/brew.sh
 $BUILD_DIRECTORY/setup/scripts/nodejs.sh
+$BUILD_DIRECTORY/setup/scripts/aws_cli.sh
 $BUILD_DIRECTORY/setup/scripts/vs_code.sh
 $BUILD_DIRECTORY/setup/scripts/copyq.sh
 $BUILD_DIRECTORY/setup/scripts/chrome.sh
