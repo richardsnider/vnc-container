@@ -10,13 +10,14 @@ chmod +x $PERENNIAL_SETTINGS_FILE
 source $PERENNIAL_SETTINGS_FILE
 
 if [[ -z ${SSH_PRIVATE_KEY} ]]; then
-	rm --force $HOME/.ssh/id_rsa $HOME/.ssh/id_rsa.pub
-	ssh-keygen -t rsa -b 4096 -q -N "" -C "" -f $HOME/.ssh/id_rsa
+  rm --force $HOME/.ssh/id_rsa $HOME/.ssh/id_rsa.pub
+  ssh-keygen -t rsa -b 4096 -q -N "" -C "" -f $HOME/.ssh/id_rsa
 else
+  mkdir -p $HOME/.ssh
   touch $HOME/.ssh/id_rsa
-	echo "$SSH_PRIVATE_KEY" > $HOME/.ssh/id_rsa
+  echo "$SSH_PRIVATE_KEY" > $HOME/.ssh/id_rsa
   touch $HOME/.ssh/id_rsa.pub
-	echo $SSH_PUBLIC_KEY > $HOME/.ssh/id_rsa.pub
+  echo $SSH_PUBLIC_KEY > $HOME/.ssh/id_rsa.pub
 fi
 
 touch $HOME/.ssh/config
@@ -41,7 +42,7 @@ cd git
 # iterate through comma separated list and git clone for each
 for i in $(echo $GIT_REPOSITORIES | sed "s/,/ /g")
 do
-	git clone $i
+  git clone $i
 done
 cd ..
 
