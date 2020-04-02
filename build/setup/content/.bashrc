@@ -8,10 +8,6 @@ PS1="$TERMINAL_PINK_BACKGROUND$TERMINAL_BLACK_TEXT[\D{%m-%d %T}]$TERMINAL_COLOR_
 
 eval $($HOME/.linuxbrew/bin/brew shellenv)
 
-if !(ps -ef | grep -v grep | grep update-background.sh);
-then
-	nohup update-background.sh &
-fi
 
 alias b-who='echo "user: $(whoami)" &&
     echo "directory: $(pwd)" &&

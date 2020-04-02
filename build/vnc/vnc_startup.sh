@@ -1,5 +1,8 @@
 #!/bin/bash
 set -e
+
+nohup update-background.sh &
+
 source /etc/profile.d/vnc-environment-variables.sh
 
 export VNC_PORT=5901
