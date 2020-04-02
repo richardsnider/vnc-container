@@ -9,25 +9,21 @@ vim -c ":$" $PERENNIAL_SETTINGS_FILE
 chmod +x $PERENNIAL_SETTINGS_FILE
 source $PERENNIAL_SETTINGS_FILE
 
+mkdir -p $HOME/.ssh
 if [[ -z ${SSH_PRIVATE_KEY} ]]; then
   rm --force $HOME/.ssh/id_rsa $HOME/.ssh/id_rsa.pub
   ssh-keygen -t rsa -b 4096 -q -N "" -C "" -f $HOME/.ssh/id_rsa
 else
-  mkdir -p $HOME/.ssh
-  touch $HOME/.ssh/id_rsa
   echo "$SSH_PRIVATE_KEY" > $HOME/.ssh/id_rsa
-  touch $HOME/.ssh/id_rsa.pub
   echo $SSH_PUBLIC_KEY > $HOME/.ssh/id_rsa.pub
 fi
 
-touch $HOME/.ssh/config
 echo "Host github.com" > $HOME/.ssh/config
 echo "User git" >> $HOME/.ssh/config
 echo "Hostname github.com" >> $HOME/.ssh/config
 echo "PreferredAuthentications publickey" >> $HOME/.ssh/config
 echo "IdentityFile $HOME/.ssh/id_rsa" >> $HOME/.ssh/config
 
-touch $HOME/.ssh/authorized_keys
 cat $HOME/.ssh/id_rsa.pub > $HOME/.ssh/authorized_keys
 eval "$(ssh-agent -s)"
 ssh-add -qv $HOME/.ssh/id_rsa
@@ -37,15 +33,16 @@ ssh -o StrictHostKeyChecking=no -vT git@github.com
 git config --global user.name $GIT_USERNAME
 git config --global user.email $GIT_EMAIL
 
-mkdir -p ~/git
-cd git
+mkdir -p $HOME/git
+cd $HOME/git
 # iterate through comma separated list and git clone for each
 for i in $(echo $GIT_REPOSITORIES | sed "s/,/ /g")
 do
   git clone $i
 done
-cd ..
+cd $HOME
 
+# npm login command cannot be used without live user input. Use the api directly with curl.
 NPM_TOKEN=$(curl --silent \
   -H "Accept: application/json" \
   -H "Content-Type:application/json" \
@@ -55,7 +52,7 @@ NPM_TOKEN=$(curl --silent \
 npm set registry "https://registry.npmjs.org"
 npm set https://registry.npmjs.org/:_authToken $NPM_TOKEN
 
-mkdir -p ~/.aws
-echo "$AWS_CREDENTIALS" > ~/.aws/credentials
+mkdir -p $HOME/.aws
+echo "$AWS_CREDENTIALS" > $HOME/.aws/credentials
 
 shred --zero --remove $PERENNIAL_SETTINGS_FILE
