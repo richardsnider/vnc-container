@@ -28,6 +28,3 @@ $BUILD_DIRECTORY/setup/scripts/copyq.sh
 $BUILD_DIRECTORY/setup/scripts/chrome.sh
 $BUILD_DIRECTORY/setup/scripts/xfce_ui.sh
 
-sudo -u user npm install --prefix $BUILD_DIRECTORY/setup/scripts/node
-sudo -u user node $BUILD_DIRECTORY/setup/scripts/node/generateBackground.js
-mv background.svg $HOME/.config/background.svg
