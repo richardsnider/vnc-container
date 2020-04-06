@@ -1,5 +1,4 @@
 #!/bin/bash
-unset $VNC_PW
 
 TERMINAL_COLOR_RESET="\[\033[0m\]"
 TERMINAL_PINK_BACKGROUND="\[\033[47m\]"
