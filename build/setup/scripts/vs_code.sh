@@ -23,4 +23,5 @@ echo "{
     \"editor.minimap.enabled\": false,
     \"extensions.ignoreRecommendations\": true,
     \"terminal.integrated.shell.linux\": \"/bin/bash\",
+    \"workbench.statusBar.visible\": false,
 }" >> $HOME/.config/Code/User/settings.json
