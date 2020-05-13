@@ -1,19 +1,38 @@
 FROM registry.hub.docker.com/library/ubuntu:20.04
 
-RUN apt-get update
+ENV HOME=/home/user
+ENV BUILD_DIRECTORY=$HOME/build
+ENV TERM=xterm
+ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get install -y openssh-server
-RUN mkdir /var/run/sshd
+WORKDIR $HOME
 
-RUN echo 'root:root' |chpasswd
+RUN apt-get -q update
+RUN apt-get install -y apt-utils
+RUN apt-get install -y software-properties-common
+RUN apt-get -q update
+RUN apt-get upgrade -y
+RUN apt-get autoremove -y
 
-RUN sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
-RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+RUN apt-get install -y sudo
+RUN apt-get install -y locales
+RUN apt-get install -y build-essential
+RUN apt-get install -y net-tools
+RUN apt-get install -y wget
+RUN apt-get install -y curl
+RUN apt-get install -y apt-transport-https
+RUN apt-get install -y vim
+RUN apt-get install -y file
+RUN apt-get install -y gnupg
+RUN apt-get install -y bzip2
+RUN apt-get install -y python-numpy
+RUN apt-get install -y unzip
+RUN apt-get install -y jq
+RUN apt-get install -y git
 
-RUN mkdir /root/.ssh
+ADD ./build $BUILD_DIRECTORY
+RUN chmod +x $BUILD_DIRECTORY/setup.sh && $BUILD_DIRECTORY/setup.sh
 
-RUN apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
+# USER 1000
 EXPOSE 22
 CMD    ["/usr/sbin/sshd", "-D"]
