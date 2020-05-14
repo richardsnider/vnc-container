@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-PERENNIAL_SETTINGS_FILE="perennial-settings.sh"
-echo "#!/usr/bin/env bash" > $PERENNIAL_SETTINGS_FILE
-echo "# Paste your personal settings here" >> $PERENNIAL_SETTINGS_FILE
-echo "" >> $PERENNIAL_SETTINGS_FILE
-vim -c ":$" $PERENNIAL_SETTINGS_FILE
+SETTINGS_FILE="settings.sh"
+echo "#!/usr/bin/env bash" > $SETTINGS_FILE
+echo "# Paste your personal settings here" >> $SETTINGS_FILE
+echo "" >> $SETTINGS_FILE
+vim -c ":$" $SETTINGS_FILE
 
-chmod +x $PERENNIAL_SETTINGS_FILE
-source $PERENNIAL_SETTINGS_FILE
+chmod +x $SETTINGS_FILE
+source $SETTINGS_FILE
 
 mkdir -p $HOME/.ssh
 if [[ -z ${SSH_PRIVATE_KEY} ]]; then
@@ -55,4 +55,4 @@ npm set https://registry.npmjs.org/:_authToken $NPM_TOKEN
 mkdir -p $HOME/.aws
 echo "$AWS_CREDENTIALS" > $HOME/.aws/credentials
 
-shred --zero --remove $PERENNIAL_SETTINGS_FILE
+shred --zero --remove $SETTINGS_FILE

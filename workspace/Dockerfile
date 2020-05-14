@@ -21,6 +21,11 @@ RUN apt-get install -y net-tools
 RUN apt-get install -y wget
 RUN apt-get install -y curl
 RUN apt-get install -y apt-transport-https
+RUN apt-get install -y ca-certificates
+RUN apt-get install -y openssh-server
+RUN apt-get install -y sshfs
+RUN apt-get install -y openssh-server
+
 RUN apt-get install -y vim
 RUN apt-get install -y file
 RUN apt-get install -y gnupg

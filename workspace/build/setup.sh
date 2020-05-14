@@ -4,26 +4,15 @@ set -e
 useradd -ms /bin/bash -u 1000 user
 
 echo "Setup ssh server"
-apt-get install -y openssh-server
 mkdir /var/run/sshd
-echo 'root:root' |chpasswd
-sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+echo 'user:foobar' | chpasswd
 sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
-mkdir /root/.ssh
-apt-get clean
-rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+mkdir $HOME/.ssh
 
-locale-gen en_US.UTF-8
-LANG='en_US.UTF-8'
-LANGUAGE='en_US:en'
-LC_ALL='en_US.UTF-8'
-FONTCONFIG_PATH='/etc/fonts/'
-
-cp $BUILD_DIRECTORY/scripts/.bashrc $HOME/.bashrc
-
+echo "Add scripts"
 find $BUILD_DIRECTORY/scripts -name '*.sh' -exec chmod a+x {} +
 cp $BUILD_DIRECTORY/scripts/* /usr/local/bin
-
+cp $BUILD_DIRECTORY/.bashrc $HOME/.bashrc
 chown -R user:user $HOME
 
 # echo "Install brew via git clone as directed by https://docs.brew.sh/Homebrew-on-Linux#alternative-installation"

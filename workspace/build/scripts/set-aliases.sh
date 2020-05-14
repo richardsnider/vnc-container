@@ -10,9 +10,6 @@ alias b-who='echo "user: $(whoami)" &&
 # Show folder contents
 alias b-ls='echo "Dir Size|Perms|Link Count|Owner|Group|Size|Mod. Time|Name"; ls -AFhls --color --group-directories-first'
 
-# Remove unnecessary folders
-alias b-cleanup='rm -rf ~/Music ~/Pictures ~/Videos ~/Templates ~/Public ~/Documents'
-
 # Search running processes
 alias b-ps="ps -aux | grep "
 alias b-top="/bin/ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
