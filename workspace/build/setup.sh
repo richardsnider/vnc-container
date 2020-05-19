@@ -3,6 +3,12 @@ set -e
 
 useradd -ms /bin/bash -u 1000 user
 
+locale-gen en_US.UTF-8
+LANG='en_US.UTF-8'
+LANGUAGE='en_US:en'
+LC_ALL='en_US.UTF-8'
+FONTCONFIG_PATH='/etc/fonts/'
+
 echo "Setup ssh server"
 mkdir /var/run/sshd
 echo 'user:foobar' | chpasswd
