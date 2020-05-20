@@ -8,31 +8,32 @@ set -e
 # export DEBIAN_FRONTEND=noninteractive
 cd $HOME
 
-sudo apt-get -q update
-sudo apt-get install -y apt-utils
-sudo apt-get install -y software-properties-common
-sudo apt-get -q update
-sudo apt-get upgrade -y
-sudo apt-get autoremove -y
+sudo apt-get --quiet update
+sudo apt-get install --yes apt-utils
+sudo apt-get install --yes software-properties-common
+sudo apt-get --quiet update
+sudo apt-get upgrade --yes
+sudo apt-get autoremove --yes
 
-sudo apt-get install -y sudo
-sudo apt-get install -y locales
-sudo apt-get install -y build-essential
-sudo apt-get install -y net-tools
-sudo apt-get install -y wget
-sudo apt-get install -y curl
-sudo apt-get install -y apt-transport-https
-sudo apt-get install -y ca-certificates
-sudo apt-get install -y vim
-sudo apt-get install -y file
-sudo apt-get install -y gnupg
-sudo apt-get install -y bzip2
-sudo apt-get install -y python-numpy
-sudo apt-get install -y unzip
-sudo apt-get install -y jq
-sudo apt-get install -y git
-sudo apt-get install -y fonts-liberation 
-sudo apt-get install -y xdg-utils
+sudo apt-get install --yes sudo
+sudo apt-get install --yes locales
+sudo apt-get install --yes build-essential
+sudo apt-get install --yes net-tools
+sudo apt-get install --yes wget
+sudo apt-get install --yes curl
+sudo apt-get install --yes apt-transport-https
+sudo apt-get install --yes ca-certificates
+sudo apt-get install --yes vim
+sudo apt-get install --yes file
+sudo apt-get install --yes gnupg
+sudo apt-get install --yes gnupg-agent
+sudo apt-get install --yes bzip2
+sudo apt-get install --yes python-numpy
+sudo apt-get install --yes unzip
+sudo apt-get install --yes jq
+sudo apt-get install --yes git
+sudo apt-get install --yes fonts-liberation 
+sudo apt-get install --yes xdg-utils
 
 sudo locale-gen en_US.UTF-8
 export LANG='en_US.UTF-8'
@@ -40,11 +41,25 @@ export LANGUAGE='en_US:en'
 export LC_ALL='en_US.UTF-8'
 export FONTCONFIG_PATH='/etc/fonts/'
 
+sudo apt-get install --yes qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virtinst virt-top
+sudo adduser `id -un` libvirt
+sudo adduser `id -un` kvm
+kvm-ok
+
+echo "Install Docker as directed by https://docs.docker.com/engine/install/ubuntu/"
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+sudo apt-get update
+sudo apt-get install --yes docker-ce docker-ce-cli containerd.io
+
 sudo add-apt-repository ppa:hluk/copyq
 sudo apt-get update
-sudo apt-get install copyq -y
+sudo apt-get install --yes copyq
 
-sudo apt-get install -y chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg
+sudo apt-get install --yes chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg
 ln -s /usr/bin/chromium-browser /usr/bin/google-chrome
 
 echo "Install nodejs as directed by https://github.com/nodesource/distributions/blob/master/README.md#debinstall"
