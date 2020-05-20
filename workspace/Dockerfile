@@ -38,6 +38,5 @@ RUN apt-get install -y git
 ADD ./build $BUILD_DIRECTORY
 RUN chmod +x $BUILD_DIRECTORY/setup.sh && $BUILD_DIRECTORY/setup.sh
 
-# USER 1000
-EXPOSE 22
+EXPOSE 22 25 53 80 8000-8100
 CMD    ["/usr/sbin/sshd", "-D"]
