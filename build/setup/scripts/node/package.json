@@ -1,0 +1,19 @@
+{
+  "name": "vnc-setup",
+  "version": "1.0.0",
+  "description": "Node app for installing and prepping vnc image.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/richardsnider/vnc-container.git"
+  },
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "keywords": [],
+  "author": "Richard Snider",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.15"
+  }
+}

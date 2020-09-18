@@ -1,0 +1,4 @@
+# To keep image size small, ignore all files except the build folder.
+*
+!build
+build/node/node_modules
